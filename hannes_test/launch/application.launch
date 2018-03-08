@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <launch>
     <!-- Add all launch files that you want to run additionally to your robot bringup like moveit, etc... -->
-    <arg name="robot" default="cob4-2"/>
-    <arg name="robot_env" default="saturn-ingolstadt"/>
+    <!--arg name="robot" default="cob4-2"/-->
+    <arg name="robot" default="$(optenv ROBOT !!NO_ROBOT_SET!!)"/>
+    <!--arg name="robot_env" default="saturn-ingolstadt"/-->
+    <arg name="robot_env" default="$(optenv ROBOT_ENV !!NO_ROBOT_ENV_SET!!)"/>
+    <arg name="pkg_env_config" default="$(find cob_default_env_config)"/>
     <!--arg name="pkg_env_config" default="$(find msh_env_config)"/-->
     <!--arg name="pkg_nav_config" default="$(find msh_navigation_config)"/-->
     <!--arg name="pkg_nav_env_config" default="$(find msh_navigation_config)"/-->
@@ -13,13 +16,15 @@
     <arg name="part_num" default="100"/>
     <arg name="ndt_match" default="false"/>
     <arg name="ndt_type" default="EWMA" />
+    <arg name="split_merge" default="false" />
     <arg name="gain" default="3"/>
     <arg name="counter" default="1"/>
     <arg name="mapping" default="1.0"/>
     <arg name="stmgain" default="0.5"/>
     <arg name="optimize_pose" default="false"/>   
+    <arg name="use_IGMM_matching" default="true"/>
 
-    <node name="bagfile" pkg="rosbag" type="play" args="-r 1.25 --clock --start 38 /home/srd-pz/bags/filtered3_ekf.bag" output="screen"/>  
+    <node name="bagfile" pkg="rosbag" type="play" args="-r 1.15 --clock --start 38 /home/srd-pz/bags/filtered3_ekf.bag" output="screen"/>  
     
     <!--include file="$(find cob_bringup)/drivers/scan_unifier.launch">
 			<arg name="robot" value="cob4-2"/>
@@ -39,11 +44,16 @@
         <arg name="init_from_static_map" value="true"/>
         <arg name="robot" value="cob4-2"/>
         <arg name="robot_env" value="saturn-ingolstadt" />
+        <!--arg name="pkg_env_config" default="$(find cob_default_env_config)"/-->
+        <!--arg name="map" default="$(arg pkg_env_config)/$(arg robot_env)/map.yaml"/-->
         <arg name="pkg_env_config" value="/home/srd-pz/bags/saturn-ingolstadt"/>
         <arg name="map" value="/home/srd-pz/bags/saturn-ingolstadt/map.yaml" />
         <arg name="map_res" value="$(arg int_res)"/>
         <arg name="part_num" value="$(arg part_num)"/>
         <arg name="ndt_type" value="$(arg ndt_type)"/>
+        <arg name="split_merge" value="$(arg split_merge)"/>
+        <arg name="ndt_match" value="$(arg ndt_match)"/>
+        <arg name="use_IGMM_matching" value="$(arg use_IGMM_matching)"/>
     </include> 
    
 </launch>

@@ -27,15 +27,15 @@ class Application:
 
     def execute(self):
         rospy.sleep(1)
-        #self.initpose()
-        rospy.sleep(5)
+        self.initpose()
+        rospy.sleep(1)
         self.atf.start("testblock_small")
 #        poses = rospy.get_param("/script_server/base")
 #        for pose in poses:
 #            print "moving to pose", pose
 #            sss.move("base",pose)
         #rosnode._rosnode_cmd_info(['rosnode', 'info', '/ipa_loc_feature_source_laser_node'])
-        rospy.sleep(600)#750s
+        rospy.sleep(750)#750s
         self.atf.stop("testblock_small")
         # os.system('rosrun map_server map_saver map:=map_hmm -f '+self.filepath+'map_atf_stm'+str(time.time()))
         # os.system('rosrun map_server map_saver map:=ref_map -f '+self.filepath+'map_atf_ltm'+str(time.time()))
@@ -79,21 +79,21 @@ class Application:
         initialpose.header.stamp = rospy.Time.now()
         print "stamp: "+str( initialpose.header.stamp)
         initialpose.header.frame_id = "map"
-        initialpose.pose.pose.position.x = 8.76
-        initialpose.pose.pose.position.y = 39.2
+        initialpose.pose.pose.position.x = 8.56
+        initialpose.pose.pose.position.y = 39.1
         initialpose.pose.pose.position.z = 0
-        quat = tf.transformations.quaternion_from_euler(0.0, 0.0, -2.99)
+        quat = tf.transformations.quaternion_from_euler(0.0, 0.0, -2.94)
         initialpose.pose.pose.orientation.x = quat[0]
         initialpose.pose.pose.orientation.y = quat[1]
         initialpose.pose.pose.orientation.z = quat[2]
         initialpose.pose.pose.orientation.w = quat[3]
-        initialpose.pose.covariance[0] = 0.01;
-        initialpose.pose.covariance[7] = 0.01;
-        initialpose.pose.covariance[35] = 0.01;
+        initialpose.pose.covariance[0] = 0.012;
+        initialpose.pose.covariance[7] = 0.012;
+        initialpose.pose.covariance[35] = 0.012;
 
         # publish robot pose on initialpose topic
         for i in range(0,2):
-            #pub_initialpose.publish(initialpose)
+            pub_initialpose.publish(initialpose)
             rospy.sleep(1.5)
             print "publish initpose"
 
