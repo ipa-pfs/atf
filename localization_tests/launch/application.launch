@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="bag" default="/home/pfs/atf_bags/2018-03-07-16-10-10.bag"/>
+    <node name="bagfile" pkg="rosbag" type="play" args="--clock $(arg bag)" output="screen"/>
+    <include file="$(find ipa_navigation)/bringup/ipa_navigation.launch">
+      <arg name="use_lts" value="true"/>
+      <arg name="init_mode" value="from_static_map"/>
+    </include>
+    <include file="$(find ipa_navigation)/bringup/tools/rviz_lts.launch"/>
+    <!--include file="$(find ipa_navigation)/launch/ipa_navigation.launch"/>
+    <include file="$(find ipa_navigation)/launch/rviz.launch"/-->
+
+</launch>

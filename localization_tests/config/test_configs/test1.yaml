@@ -1,0 +1,10 @@
+# without groundtruth, without global topics
+testblock_small:
+#  path_length:
+#    - root_frame: map
+#      measured_frame: base_footprint
+  localization_distance:
+    - groundtruth_topic: /base_pose_ground_truth
+ #   - root_frame: map
+ #     measured_frame: base_footprint
+# testblock_all empty

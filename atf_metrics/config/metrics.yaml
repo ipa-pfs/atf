@@ -10,5 +10,7 @@ publish_rate:
   handler: CalculatePublishRateParamHandler
 interface:
     handler: CalculateInterfaceParamHandler
+localization_distance:
+  handler: CalculateLocalizationDistanceParamHandler
 # example:
 #   handler: ExampleParamHandler
