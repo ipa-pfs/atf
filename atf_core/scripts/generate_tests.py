@@ -31,6 +31,7 @@ class GenerateTests:
             self.generation_config["time_limit_recording"]
             self.generation_config["time_limit_analysing"]
             self.generation_config["time_limit_uploading"]
+            self.generation_config["time_limit_merging"]
             self.generation_config["bagfile_output"]
             self.generation_config["json_output"]
             self.generation_config["yaml_output"]
@@ -196,7 +197,7 @@ class GenerateTests:
                 param(name=self.ns + "yaml_output", value=self.generation_config["yaml_output"]),
                 param(name=self.ns + "json_output", value=self.generation_config["json_output"]),
                 test({'test-name': "merging", 'pkg': "atf_core", 'type': "merger.py",
-                      'time-limit': "10"})
+                      'time-limit': str(self.generation_config["time_limit_merging"])})
             )
             xmlstr = minidom.parseString(ElementTree.tostring(test_merge)).toprettyxml(indent="    ")
             filepath = os.path.join(self.test_generated_path, "merging.test")

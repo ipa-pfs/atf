@@ -94,8 +94,8 @@ class Merger():
                             #print "i=", i
                             #print "test_data_merged[testblock_name][metric_name][i]['data']['values']=", test_data_merged[testblock_name][metric_name][i]['data']['values']
                             test_data_merged[testblock_name][metric_name][i]['data']['min'] = min(test_data_merged[testblock_name][metric_name][i]['data']['values'])
-                            test_data_merged[testblock_name][metric_name][i]['data']['max'] = max(test_data_merged[testblock_name][metric_name][i]['data']['values'])
-                            test_data_merged[testblock_name][metric_name][i]['data']['average'] = round(sum(test_data_merged[testblock_name][metric_name][i]['data']['values'])/len(test_data_merged[testblock_name][metric_name][i]['data']['values']), 3)
+                            test_data_merged[testblock_name][metric_name][i]['data'] = max(test_data_merged[testblock_name][metric_name][i]['data']['values'])
+                 #           test_data_merged[testblock_name][metric_name][i]['data']['average'] = round(sum(test_data_merged[testblock_name][metric_name][i]['data']['values'])/len(test_data_merged[testblock_name][metric_name][i]['data']['values']), 3)
 
                 #print "test_data_merged after average=", test_data_merged
 
